@@ -16,11 +16,15 @@
     "Yibuti", "Zambia", "Zimbabue"
   ];
 
+  var IDIOMA_CATALOG = [
+    "INUKTITUT","ESPERANTO","FRISN (O FRISIO)","MALDIVO","ASAMS","RUANDÉS","TSONGA","RUSO","BHOJPUR","ZUL","ALEMÁN","INGLÉS","FRANCÉS","AFAR","ABJASO (O ABJASIANO)","AVSTICO","AFRIKAANS","AKANO","AMRICO","ARAGONÉS","ARABE","AVAR","AIMARA","AZER","BASKIR","BIELORRUSO","BÚLGARO","BISLAMA","BAMBARA","BENGAL","TIBETANO","BRETÓN","BOSNIO","CATALÁN","CHECHENO","CHAMORRO","CORSO","CREE","CHECO","ESLAVO ECLESISTICO ANTIGUO","CHUVASIO","GALÉS","DANÉS","DZONGKHA","EWE","GRIEGO (MODERNO)","ESPAÑOL (O CASTELLANO)","ESTONIO","EUSKERA","PERSA","FULA","FINÉS (O FINLANDÉS)","FIYIANO (O FIYI)","FEROS","IRLANDÉS (O GALÁICO)","GALÁICO ESCOCÉS","GALLEGO","GUARAN","GUYARAT (O GUYARAT)","MANS (GALÁICO MANS O DE ISLA DE MAN)","HAUSA","HEBREO","HINDI (O HIND)","HIRI MOTU","CROATA","HAITIANO","HÚNGARO","ARMENIO","HERERO","INTERLINGUA","INDONESIO","OCCIDENTAL","IGBO","YI DE SICHUN","INUPIAQ","IDO","ISLANDÉS","ITALIANO","JAPONÉS","JAVANS","GEORGIANO","KONGO","KIKUYU","KUANYAMA","KAZAJO (O KAZAJIO)","GROENLANDÉS (O KALAALLISUT)","CAMBOYANO (O JEMER)","CANARIO","COREANO","KANURI","CACHEMIRO","KURDO","KOMI","CRNICO","KIRGUS","LATíN","LUXEMBURGUÉS","LUGANDA","LIMBURGUS","LINGALA","LAO","LITUANO","LUBA-KATANGA","LETÓN","MALGACHE (O MALAGASY)","MARSHALÉS","MAOR","MACEDONIO","MALAYALAM","MONGOL","MARAT","MALAYO","MALTÉS","BIRMANO","NAURUANO","NORUEGO BOKML","NDEBELE DEL NORTE","NEPAL","NDONGA","NEERLANDÉS (U HOLANDÉS)","NYNORSK","NORUEGO","NDEBELE DEL SUR","NAVAJO","CHICHEWA","OCCITANO","OJIBWA","OROMO","ORIYA","OSTICO","PANYAB (O PENYABI)","PALI","POLACO","PAST (O PASHTO)","PORTUGUÉS","QUECHUA","RETRORROMÁNICO","KIRUNDI","RUMANO","SÁNSCRITO","SARDO","SINDHI","SAMI SEPTENTRIONAL","SANGO","SERBOCROATA","CINGALS","ESLOVACO","ESLOVENO","SAMOANO","SHONA","SOMAL","ALBANÉS","SERBIO","SUAZI (SWATI O SISWATI)","SESOTHO","SUNDANÉS","SUECO","SUAJILI","TAMIL","TELUG","TAYIKO","TAILANDÉS","TIGRIA","TURCOMANO","TAGALO","SETSUANA","TONGANO","TURCO","TÁRTARO","TWI","TAHITIANO","UIGUR","UCRANIANO","URDU","UZBEKO","VENDA","VIETNAMITA","WALISIANO","VOLAPK","VALN","WOLOF","XHOSA","YDISH (O YIDDISH)","YORUBA","CHUAN (O ZHUANG)","CHINO"
+  ];
+
   var GENERAL_FIELD_DEFS = [
     { type: "section", label: "DATOS PRINCIPALES" },
     { key: "numeroEmbarcacion", label: "EMBARCACION NUMERO", span: 2 },
     { key: "fechaHoraLlegada", label: "FECHA Y HORA DE LLEGADA", inputType: "datetime-local", span: 2 },
-    { key: "lugarLlegada", label: "LUGAR DE LLEGADA", span: 2 },
+    { key: "lugarLlegada", label: "LUGAR DE LLEGADA", span: 4 },
     { key: "municipio", label: "MUNICIPIO", span: 2 },
     { key: "requirente", label: "REQUIRENTE" },
     { key: "fechaHoraAviso", label: "FECHA Y HORA DE AVISO", inputType: "datetime-local", compact: true },
@@ -178,6 +182,7 @@
     generalForm: document.getElementById("generalForm"),
     generalFields: document.getElementById("generalFields"),
     africanCountriesList: document.getElementById("africanCountriesList"),
+    idiomaList: document.getElementById("idiomaList"),
     personForm: document.getElementById("personForm"),
     submitPerson: document.getElementById("submitPerson"),
     cancelEdit: document.getElementById("cancelEdit"),
@@ -190,13 +195,14 @@
   };
 
   renderAfricanCountryList();
+  renderIdiomaList();
   renderGeneralForm();
   bindEvents();
   render();
 
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", function () {
-      navigator.serviceWorker.register("./sw.js?v=20260327h").catch(function () {});
+      navigator.serviceWorker.register("./sw.js?v=20260327i").catch(function () {});
     });
   }
 
@@ -465,6 +471,17 @@
       .join("");
   }
 
+  function renderIdiomaList() {
+    if (!ui.idiomaList) {
+      return;
+    }
+    ui.idiomaList.innerHTML = IDIOMA_CATALOG
+      .map(function (item) {
+        return "<option value='" + escapeHtml(item) + "'></option>";
+      })
+      .join("");
+  }
+
   function renderGeneralForm() {
     if (!ui.generalFields) {
       return;
@@ -549,8 +566,12 @@
         + "<div class='person-sub'>" + escapeHtml(sub) + "</div>"
         + "</div>"
         + "<div class='person-actions'>"
-        + "<button type='button' class='btn btn-edit' data-action='edit'>Editar</button>"
-        + "<button type='button' class='btn btn-danger btn-delete' data-action='delete'>Eliminar</button>"
+        + "<button type='button' class='icon-action icon-edit' data-action='edit' aria-label='Editar' title='Editar'>"
+        + "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 20h9'></path><path d='M16.5 3.5a2.1 2.1 0 0 1 3 3l-11 11l-4 1l1-4z'></path></svg>"
+        + "</button>"
+        + "<button type='button' class='icon-action icon-delete' data-action='delete' aria-label='Eliminar' title='Eliminar'>"
+        + "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M3 6h18'></path><path d='M8 6v-2h8v2'></path><path d='M19 6l-1 14h-12l-1-14'></path><path d='M10 11v6'></path><path d='M14 11v6'></path></svg>"
+        + "</button>"
         + "</div>"
         + "</article>";
     }).join("");
@@ -673,6 +694,19 @@
       persistState();
       resetPersonForm();
       renderPeopleList();
+    });
+
+    ui.personForm.addEventListener("input", function (event) {
+      var target = event.target;
+      if (!target || target.name !== "lugarNacimiento") {
+        return;
+      }
+      var value = toText(target.value);
+      if (!value) {
+        return;
+      }
+      ui.personForm.elements.pais.value = value;
+      ui.personForm.elements.nacionalidad.value = value;
     });
 
     ui.cancelEdit.addEventListener("click", function () {
