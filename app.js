@@ -74,7 +74,8 @@
     { key: "distribucionModuloC", label: "DISTRIBUCION MODULO C" },
     { key: "distribucionModuloD", label: "DISTRIBUCION MODULO D" },
     { key: "distribucionModuloE", label: "DISTRIBUCION MODULO E" },
-    { key: "policiasIntervinientes", label: "POLICIAS INTERVINIENTES", inputType: "textarea" }
+    { type: "section", label: "POLICIAS INTERVINIENTES" },
+    { key: "policiasIntervinientes", inputType: "textarea", span: 4, hideLabel: true }
   ];
 
   var DEFAULT_COMMON_DATA = {
@@ -204,7 +205,7 @@
 
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", function () {
-      navigator.serviceWorker.register("./sw.js?v=20260327n").catch(function () {});
+      navigator.serviceWorker.register("./sw.js?v=20260327o").catch(function () {});
     });
   }
 
@@ -543,6 +544,12 @@
       }
 
       if (inputType === "textarea") {
+        if (field.hideLabel) {
+          return ""
+            + "<div class='" + classes.concat(["general-field-wide"]).join(" ") + "'>"
+            + "<textarea data-common-key='" + escapeHtml(field.key) + "' rows='3'" + placeholder + "></textarea>"
+            + "</div>";
+        }
         return ""
           + "<label class='" + classes.concat(["general-field-wide"]).join(" ") + "'>"
           + "<span>" + escapeHtml(field.label) + "</span>"
