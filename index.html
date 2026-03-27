@@ -5,22 +5,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Cayu·Pol</title>
   <meta name="theme-color" content="#0f1f35">
-  <link rel="manifest" href="./manifest.webmanifest?v=20260327f">
+  <link rel="manifest" href="./manifest.webmanifest?v=20260327g">
   <link rel="apple-touch-icon" sizes="180x180" href="./assets/icons/icon-180.png">
   <link rel="apple-touch-icon" sizes="167x167" href="./assets/icons/icon-167.png">
   <link rel="apple-touch-icon" sizes="152x152" href="./assets/icons/icon-152.png">
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/icons/icon-32.png">
-  <link rel="stylesheet" href="./styles.css?v=20260327f">
+  <link rel="stylesheet" href="./styles.css?v=20260327g">
 </head>
 <body>
   <div class="app-shell">
     <header class="topbar">
       <h1>Cayu·Pol 🛶</h1>
       <div class="top-actions">
-        <button id="btnExport" class="btn btn-primary" type="button">Guardar</button>
-        <label class="btn" for="fileImport">Cargar</label>
+        <button id="btnExport" class="btn btn-primary btn-with-icon" type="button">
+          <span class="btn-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 4h10l4 4v10a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2" />
+              <path d="M10 14a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+              <path d="M14 4l0 4l-6 0l0 -4" />
+            </svg>
+          </span>
+          <span>Guardar</span>
+        </button>
+        <label class="btn btn-with-icon" for="fileImport">
+          <span class="btn-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 19l2.757 -7.351a1 1 0 0 1 .936 -.649h12.307a1 1 0 0 1 .986 1.164l-.996 5.211a2 2 0 0 1 -1.964 1.625h-14.026a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2h4l3 3h7a2 2 0 0 1 2 2v2" />
+            </svg>
+          </span>
+          <span>Cargar</span>
+        </label>
         <input id="fileImport" type="file" accept="application/json" hidden>
-        <button id="btnClear" class="btn btn-danger" type="button" aria-label="Limpiar">ⓧ</button>
+        <button id="btnClear" class="btn btn-danger btn-with-icon" type="button" aria-label="Limpiar">
+          <span class="btn-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 6l-12 12" />
+              <path d="M6 6l12 12" />
+            </svg>
+          </span>
+        </button>
       </div>
     </header>
 
@@ -118,6 +141,6 @@
   <datalist id="africanCountriesList"></datalist>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-  <script src="./app.js?v=20260327f"></script>
+  <script src="./app.js?v=20260327g"></script>
 </body>
 </html>
