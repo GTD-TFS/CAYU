@@ -33,6 +33,7 @@
     { key: "otrosMenores", label: "OTROS MENORES", inputType: "number", compact: true },
     { key: "mujeresAdultas", label: "MUJERES ADULTAS", inputType: "number", compact: true },
     { key: "hombresAdultos", label: "HOMBRES ADULTOS", inputType: "number", compact: true },
+    { type: "section", label: "JUZGADO Y TELEFONEMAS" },
     {
       key: "juzgado",
       label: "JUZGADO",
@@ -203,7 +204,7 @@
 
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", function () {
-      navigator.serviceWorker.register("./sw.js?v=20260327m").catch(function () {});
+      navigator.serviceWorker.register("./sw.js?v=20260327n").catch(function () {});
     });
   }
 
