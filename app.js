@@ -17,7 +17,7 @@
   ];
 
   var GENERAL_FIELD_DEFS = [
-    { type: "section", label: "CNC" },
+    { type: "section", label: "DATOS PRINCIPALES" },
     { key: "numeroEmbarcacion", label: "EMBARCACION NUMERO", span: 1 },
     { key: "lugarLlegada", label: "LUGAR DE LLEGADA", span: 3 },
     { key: "fechaHoraLlegada", label: "FECHA Y HORA DE LLEGADA", inputType: "datetime-local", span: 2 },
@@ -190,7 +190,7 @@
 
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", function () {
-      navigator.serviceWorker.register("./sw.js").catch(function () {});
+      navigator.serviceWorker.register("./sw.js?v=20260327c").catch(function () {});
     });
   }
 
@@ -442,7 +442,7 @@
   function resetPersonForm() {
     editingPersonId = null;
     ui.personForm.reset();
-    ui.submitPerson.textContent = "Anadir integrante";
+    ui.submitPerson.textContent = "AÑADIR PERSONA";
     ui.cancelEdit.hidden = true;
   }
 
@@ -509,7 +509,7 @@
     ui.peopleCount.textContent = String(state.people.length);
 
     if (!state.people.length) {
-      ui.peopleList.innerHTML = "<p class='person-sub'>Sin integrantes.</p>";
+      ui.peopleList.innerHTML = "<p class='person-sub'>Sin personas.</p>";
       return;
     }
 
@@ -634,7 +634,7 @@
           if (!current.baseFields.hablaCastellano) {
             current.baseFields.hablaCastellano = "NO";
           }
-          showToast("Integrante actualizado");
+          showToast("Persona actualizada");
         }
       } else {
         var baseFields = emptyBaseFields();
@@ -648,7 +648,7 @@
           baseFields: baseFields,
           extraFields: {}
         });
-        showToast("Integrante anadido");
+        showToast("Persona añadida");
       }
 
       persistState();
@@ -690,7 +690,7 @@
       }
 
       if (action === "delete") {
-        var ok = window.confirm("¿Eliminar este integrante?");
+        var ok = window.confirm("¿Eliminar esta persona?");
         if (!ok) {
           return;
         }
@@ -709,7 +709,7 @@
 
         persistState();
         renderPeopleList();
-        showToast("Integrante eliminado");
+        showToast("Persona eliminada");
       }
     });
 

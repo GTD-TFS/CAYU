@@ -1,13 +1,14 @@
 :root {
-  --text: #e7f1ff;
-  --muted: #a8bfd8;
-  --line: rgba(190, 214, 248, 0.24);
-  --line-strong: rgba(142, 183, 239, 0.28);
-  --glass: rgba(20, 36, 62, 0.66);
-  --glass-strong: rgba(29, 48, 79, 0.82);
-  --primary: #2e8cff;
-  --danger: #eb5b7a;
-  --shadow: 0 18px 44px rgba(1, 8, 23, 0.48);
+  --text: #e9eef7;
+  --muted: #9ca9bc;
+  --line: rgba(212, 223, 241, 0.2);
+  --line-strong: rgba(170, 194, 232, 0.26);
+  --glass: rgba(28, 31, 40, 0.72);
+  --glass-strong: rgba(34, 39, 52, 0.9);
+  --primary: #2f76e6;
+  --danger: #cb4d65;
+  --gold: #d6b26a;
+  --shadow: 0 18px 46px rgba(1, 3, 10, 0.5);
 }
 
 * {
@@ -19,16 +20,17 @@ body {
   font-family: "Segoe UI", "Noto Sans", sans-serif;
   color: var(--text);
   background:
-    radial-gradient(900px 460px at -8% -14%, rgba(92, 143, 212, 0.24), transparent 70%),
-    radial-gradient(760px 500px at 112% 0%, rgba(68, 121, 188, 0.22), transparent 70%),
-    linear-gradient(165deg, #0a1528 0%, #0d1b31 44%, #132743 100%);
+    radial-gradient(1200px 700px at -10% -20%, rgba(78, 96, 129, 0.26), transparent 72%),
+    radial-gradient(900px 600px at 115% 0%, rgba(62, 76, 102, 0.24), transparent 72%),
+    radial-gradient(1000px 600px at 40% 120%, rgba(41, 45, 58, 0.36), transparent 72%),
+    linear-gradient(165deg, #111317 0%, #171b23 36%, #1e2430 100%);
   min-height: 100dvh;
 }
 
 .app-shell {
   width: min(1180px, 100%);
   margin: 0 auto;
-  padding: calc(52px + env(safe-area-inset-top)) 10px 14px;
+  padding: calc(52px + env(safe-area-inset-top)) 10px calc(98px + env(safe-area-inset-bottom));
 }
 
 .topbar,
@@ -70,18 +72,20 @@ h1 {
 }
 
 .tab-switch {
-  position: sticky;
-  top: calc(48px + env(safe-area-inset-top));
-  z-index: 35;
-  margin: 8px auto 10px;
-  width: min(420px, 100%);
+  position: fixed;
+  left: 50%;
+  bottom: calc(10px + env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  z-index: 42;
+  margin: 0;
+  width: min(420px, calc(100% - 18px));
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding: 4px;
   border-radius: 999px;
   border: 1px solid var(--line);
-  background: rgba(17, 33, 56, 0.72);
-  box-shadow: 0 10px 24px rgba(2, 10, 26, 0.42);
+  background: rgba(20, 25, 35, 0.86);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.5);
 }
 
 .tab-switch-indicator {
@@ -89,8 +93,8 @@ h1 {
   inset: 4px auto 4px 4px;
   width: calc(50% - 4px);
   border-radius: 999px;
-  background: linear-gradient(135deg, rgba(74, 155, 255, 0.9), rgba(30, 111, 220, 0.86));
-  box-shadow: 0 8px 20px rgba(22, 87, 184, 0.45);
+  background: linear-gradient(135deg, rgba(70, 124, 214, 0.95), rgba(41, 92, 178, 0.92));
+  box-shadow: 0 8px 20px rgba(9, 30, 76, 0.52);
   transition: transform 0.22s ease;
   pointer-events: none;
 }
@@ -102,7 +106,7 @@ h1 {
 .tab {
   border: 0;
   background: transparent;
-  color: #c9def8;
+  color: #bfc9d7;
   border-radius: 999px;
   min-height: 34px;
   cursor: pointer;
@@ -111,7 +115,7 @@ h1 {
 }
 
 .tab.is-active {
-  color: #fff;
+  color: #f9fbff;
   font-weight: 700;
 }
 
@@ -132,9 +136,21 @@ main {
   padding: 12px;
 }
 
+#screen-people > .card + .card {
+  margin-top: 14px;
+}
+
+#screen-people > .card + .card {
+  margin-top: 14px;
+}
+
 h2 {
   margin: 0 0 10px;
   font-size: 0.98rem;
+  color: var(--gold);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
 }
 
 .form-grid {
@@ -153,10 +169,12 @@ label {
   gap: 5px;
   font-size: 0.8rem;
   color: var(--muted);
+  min-width: 0;
 }
 
 .general-field {
   grid-column: span 2;
+  min-width: 0;
 }
 
 .general-field-span-1 {
@@ -180,13 +198,14 @@ label {
 .form-section-title {
   grid-column: 1 / -1;
   font-size: 0.74rem;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: 0.05em;
-  color: #b4d1f7;
-  border-top: 1px solid rgba(164, 197, 245, 0.26);
+  color: var(--gold);
+  border-top: 1px solid rgba(205, 177, 115, 0.35);
   padding-top: 10px;
   margin-top: 2px;
   text-transform: uppercase;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.34);
 }
 
 .general-field span {
@@ -204,18 +223,41 @@ button {
 input,
 select,
 textarea {
-  border: 1.6px solid rgba(155, 194, 245, 0.35);
-  background: linear-gradient(180deg, rgba(48, 72, 110, 0.9), rgba(29, 48, 82, 0.94));
+  border: 1.6px solid rgba(173, 195, 225, 0.28);
+  background: linear-gradient(180deg, rgba(53, 61, 80, 0.96), rgba(34, 39, 53, 0.98));
   border-radius: 10px;
   padding: 8px 10px;
-  font-size: 0.9rem;
+  font-size: 16px;
   min-height: 37px;
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
   color: #eef6ff;
   box-shadow:
-    inset 0 1px 0 rgba(209, 229, 255, 0.2),
-    inset 0 -8px 14px rgba(3, 14, 31, 0.32),
-    0 7px 14px rgba(3, 11, 25, 0.36);
+    inset 0 1px 0 rgba(213, 223, 242, 0.16),
+    inset 0 -8px 14px rgba(8, 10, 17, 0.44),
+    0 7px 14px rgba(0, 0, 0, 0.42);
+}
+
+input[type="date"],
+input[type="datetime-local"],
+input[type="time"] {
+  font-size: 16px;
+  padding: 6px 8px;
+  line-height: 1.2;
+}
+
+input[type="date"]::-webkit-datetime-edit,
+input[type="datetime-local"]::-webkit-datetime-edit,
+input[type="time"]::-webkit-datetime-edit {
+  padding: 0;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="datetime-local"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+  opacity: 0.75;
+  cursor: pointer;
 }
 
 textarea {
@@ -241,7 +283,7 @@ button:focus-visible,
 .btn,
 button {
   border: 1px solid var(--line-strong);
-  background: linear-gradient(180deg, rgba(53, 81, 124, 0.92), rgba(38, 59, 98, 0.96));
+  background: linear-gradient(180deg, rgba(62, 73, 98, 0.94), rgba(43, 51, 72, 0.98));
   color: #e8f3ff;
   border-radius: 10px;
   padding: 8px 12px;
@@ -254,8 +296,8 @@ button {
 
 .btn-primary,
 button.primary {
-  background: linear-gradient(145deg, rgba(39, 141, 255, 0.9), rgba(16, 96, 206, 0.9));
-  border-color: rgba(129, 189, 255, 0.7);
+  background: linear-gradient(145deg, rgba(56, 126, 230, 0.92), rgba(31, 88, 177, 0.92));
+  border-color: rgba(134, 176, 236, 0.65);
 }
 
 .btn-danger,
@@ -277,8 +319,8 @@ button.danger {
 }
 
 .person-item {
-  border: 1px solid rgba(137, 176, 230, 0.28);
-  background: rgba(28, 47, 78, 0.76);
+  border: 1px solid rgba(160, 186, 224, 0.22);
+  background: rgba(34, 40, 53, 0.82);
   border-radius: 12px;
   padding: 8px;
   display: flex;
@@ -310,7 +352,7 @@ button.danger {
 .toast {
   position: fixed;
   left: 50%;
-  bottom: 14px;
+  bottom: calc(82px + env(safe-area-inset-bottom));
   transform: translateX(-50%);
   background: rgba(7, 18, 36, 0.94);
   color: #fff;
@@ -321,7 +363,7 @@ button.danger {
   transition: opacity 0.2s ease;
   z-index: 45;
   font-size: 0.85rem;
-  border: 1px solid rgba(143, 187, 245, 0.32);
+  border: 1px solid rgba(169, 190, 221, 0.35);
 }
 
 .toast.show {
@@ -351,13 +393,17 @@ button.danger {
   .app-shell {
     padding-left: 8px;
     padding-right: 8px;
-    padding-bottom: 10px;
+    padding-bottom: calc(94px + env(safe-area-inset-bottom));
   }
 
   .topbar {
     width: calc(100% - 8px);
     padding-left: 8px;
     padding-right: 8px;
+  }
+
+  .tab-switch {
+    width: calc(100% - 12px);
   }
 
   .form-grid {

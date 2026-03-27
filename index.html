@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Cayu·Pol</title>
   <meta name="theme-color" content="#0f1f35">
-  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="manifest" href="./manifest.webmanifest?v=20260327c">
   <link rel="apple-touch-icon" sizes="180x180" href="./assets/icons/icon-180.png">
   <link rel="apple-touch-icon" sizes="167x167" href="./assets/icons/icon-167.png">
   <link rel="apple-touch-icon" sizes="152x152" href="./assets/icons/icon-152.png">
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/icons/icon-32.png">
-  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./styles.css?v=20260327c">
 </head>
 <body>
   <div class="app-shell">
@@ -27,22 +27,21 @@
     <nav id="tabSwitch" class="tab-switch" data-active="general" aria-label="Pantallas">
       <span class="tab-switch-indicator" aria-hidden="true"></span>
       <button class="tab is-active" data-tab="general" type="button">Datos generales</button>
-      <button class="tab" data-tab="people" type="button">Integrantes</button>
+      <button class="tab" data-tab="people" type="button">Personas</button>
     </nav>
 
     <main>
       <section id="screen-general" class="screen is-active" aria-label="Datos generales">
         <div class="card">
-          <h2>Datos generales de sesión</h2>
           <form id="generalForm" autocomplete="off">
             <div id="generalFields" class="form-grid form-grid-general"></div>
           </form>
         </div>
       </section>
 
-      <section id="screen-people" class="screen" aria-label="Integrantes">
+      <section id="screen-people" class="screen" aria-label="Personas">
         <div class="card">
-          <h2>Nuevo integrante</h2>
+          <h2>NUEVA PERSONA</h2>
           <form id="personForm" autocomplete="off">
             <div class="form-grid">
               <label>
@@ -99,7 +98,7 @@
               </label>
             </div>
             <div class="form-actions">
-              <button type="submit" class="btn btn-primary" id="submitPerson">Añadir integrante</button>
+              <button type="submit" class="btn btn-primary" id="submitPerson">AÑADIR PERSONA</button>
               <button type="button" class="btn" id="cancelEdit" hidden>Cancelar edición</button>
             </div>
           </form>
@@ -119,6 +118,6 @@
   <datalist id="africanCountriesList"></datalist>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-  <script src="./app.js"></script>
+  <script src="./app.js?v=20260327c"></script>
 </body>
 </html>
