@@ -15,6 +15,11 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  overscroll-behavior-y: none;
+}
+
 body {
   margin: 0;
   font-family: "Segoe UI", "Noto Sans", sans-serif;
@@ -76,7 +81,7 @@ h1 {
 .tab-switch {
   position: fixed;
   left: 50%;
-  bottom: calc(-12px + env(safe-area-inset-bottom));
+  bottom: calc(-4px + env(safe-area-inset-bottom));
   transform: translateX(-50%);
   z-index: 42;
   margin: 0;

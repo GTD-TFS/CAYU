@@ -198,11 +198,12 @@
   renderIdiomaList();
   renderGeneralForm();
   bindEvents();
+  installPullToRefreshBlocker();
   render();
 
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", function () {
-      navigator.serviceWorker.register("./sw.js?v=20260327j").catch(function () {});
+      navigator.serviceWorker.register("./sw.js?v=20260327k").catch(function () {});
     });
   }
 
@@ -228,6 +229,29 @@
       normalized = "SIN-NUMERO";
     }
     return "PATERA " + normalized + ".json";
+  }
+
+  function installPullToRefreshBlocker() {
+    var startY = 0;
+    var canBlock = false;
+
+    document.addEventListener("touchstart", function (event) {
+      if (!event.touches || event.touches.length !== 1) {
+        return;
+      }
+      startY = event.touches[0].clientY;
+      canBlock = window.scrollY <= 0;
+    }, { passive: true });
+
+    document.addEventListener("touchmove", function (event) {
+      if (!canBlock || !event.touches || event.touches.length !== 1) {
+        return;
+      }
+      var delta = event.touches[0].clientY - startY;
+      if (delta > 8) {
+        event.preventDefault();
+      }
+    }, { passive: false });
   }
 
   function uid() {
