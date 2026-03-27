@@ -140,26 +140,23 @@ main {
 }
 
 .card {
-  position: relative;
-  overflow: hidden;
-  background:
-    linear-gradient(180deg, rgba(54, 62, 80, 0.64) 0%, rgba(29, 34, 45, 0.82) 68%, rgba(20, 24, 33, 0.92) 100%);
-  border: 1px solid rgba(171, 192, 224, 0.24);
+  background: var(--glass);
+  border: 1px solid rgba(165, 186, 218, 0.3);
+  border-top-color: rgba(201, 217, 239, 0.4);
+  border-left-color: rgba(184, 204, 231, 0.32);
+  border-right-color: rgba(109, 127, 154, 0.38);
+  border-bottom-color: rgba(82, 98, 122, 0.5);
+  border-radius: 14px;
   box-shadow:
-    0 26px 38px rgba(1, 4, 12, 0.48),
-    0 8px 16px rgba(3, 8, 20, 0.4),
-    inset 0 1px 0 rgba(235, 242, 255, 0.2),
-    inset 0 -14px 24px rgba(8, 12, 20, 0.44);
+    0 22px 34px rgba(1, 4, 12, 0.46),
+    0 6px 12px rgba(4, 10, 22, 0.34),
+    inset 0 1px 0 rgba(241, 246, 255, 0.18),
+    inset 1px 0 0 rgba(226, 235, 248, 0.1),
+    inset -1px 0 0 rgba(26, 32, 44, 0.36),
+    inset 0 -1px 0 rgba(16, 21, 30, 0.62);
+  backdrop-filter: blur(14px) saturate(125%);
+  -webkit-backdrop-filter: blur(14px) saturate(125%);
   padding: 12px;
-}
-
-.card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  border-radius: inherit;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0) 36%);
 }
 
 #screen-people.is-active .card:first-child {
