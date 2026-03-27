@@ -76,7 +76,7 @@ h1 {
 .tab-switch {
   position: fixed;
   left: 50%;
-  bottom: calc(3px + env(safe-area-inset-bottom));
+  bottom: calc(-4px + env(safe-area-inset-bottom));
   transform: translateX(-50%);
   z-index: 42;
   margin: 0;
@@ -136,10 +136,6 @@ main {
 
 .card {
   padding: 12px;
-}
-
-#screen-people > .card + .card {
-  margin-top: 14px;
 }
 
 #screen-people > .card + .card {
@@ -254,14 +250,14 @@ input[type="time"] {
   min-width: 0;
   min-inline-size: 0;
   display: block;
-  overflow: hidden;
+  overflow: visible;
 }
 
 input[type="date"]::-webkit-datetime-edit,
 input[type="datetime-local"]::-webkit-datetime-edit,
 input[type="time"]::-webkit-datetime-edit {
   padding: 0;
-  overflow: hidden;
+  overflow: visible;
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator,
@@ -269,10 +265,6 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator,
 input[type="time"]::-webkit-calendar-picker-indicator {
   opacity: 0.75;
   cursor: pointer;
-}
-
-label {
-  overflow: hidden;
 }
 
 textarea {
