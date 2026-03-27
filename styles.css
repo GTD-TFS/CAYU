@@ -35,11 +35,10 @@ body {
 .app-shell {
   width: min(1180px, 100%);
   margin: 0 auto;
-  padding: calc(52px + env(safe-area-inset-top)) 10px calc(98px + env(safe-area-inset-bottom));
+  padding: calc(60px + env(safe-area-inset-top)) 10px calc(98px + env(safe-area-inset-bottom));
 }
 
-.topbar,
-.card {
+.topbar {
   background: var(--glass);
   border: 1px solid var(--line);
   border-radius: 14px;
@@ -129,6 +128,7 @@ h1 {
 main {
   display: grid;
   gap: 10px;
+  padding-top: 6px;
 }
 
 .screen {
@@ -140,7 +140,30 @@ main {
 }
 
 .card {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(54, 62, 80, 0.64) 0%, rgba(29, 34, 45, 0.82) 68%, rgba(20, 24, 33, 0.92) 100%);
+  border: 1px solid rgba(171, 192, 224, 0.24);
+  box-shadow:
+    0 26px 38px rgba(1, 4, 12, 0.48),
+    0 8px 16px rgba(3, 8, 20, 0.4),
+    inset 0 1px 0 rgba(235, 242, 255, 0.2),
+    inset 0 -14px 24px rgba(8, 12, 20, 0.44);
   padding: 12px;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0) 36%);
+}
+
+#screen-people.is-active .card:first-child {
+  margin-top: 8px;
 }
 
 #screen-people > .card + .card {
@@ -395,6 +418,9 @@ button.danger {
   justify-content: space-between;
   gap: 8px;
   flex-wrap: wrap;
+  box-shadow:
+    0 10px 20px rgba(3, 9, 22, 0.35),
+    inset 0 1px 0 rgba(224, 233, 248, 0.1);
 }
 
 .person-meta {
