@@ -76,7 +76,7 @@ h1 {
 .tab-switch {
   position: fixed;
   left: 50%;
-  bottom: calc(-4px + env(safe-area-inset-bottom));
+  bottom: calc(-8px + env(safe-area-inset-bottom));
   transform: translateX(-50%);
   z-index: 42;
   margin: 0;
@@ -250,14 +250,18 @@ input[type="time"] {
   min-width: 0;
   min-inline-size: 0;
   display: block;
-  overflow: visible;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 input[type="date"]::-webkit-datetime-edit,
 input[type="datetime-local"]::-webkit-datetime-edit,
 input[type="time"]::-webkit-datetime-edit {
   padding: 0;
-  overflow: visible;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator,
