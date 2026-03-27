@@ -60,9 +60,11 @@ body {
 
 h1 {
   margin: 0;
-  font-size: 1.06rem;
-  letter-spacing: 0.02em;
-  font-weight: 700;
+  font-size: 1.08rem;
+  letter-spacing: 0.025em;
+  font-weight: 800;
+  font-family: "Avenir Next Condensed", "SF Pro Rounded", "Trebuchet MS", "Segoe UI", sans-serif;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.48);
 }
 
 .top-actions {
@@ -74,7 +76,7 @@ h1 {
 .tab-switch {
   position: fixed;
   left: 50%;
-  bottom: calc(10px + env(safe-area-inset-bottom));
+  bottom: calc(3px + env(safe-area-inset-bottom));
   transform: translateX(-50%);
   z-index: 42;
   margin: 0;
@@ -147,9 +149,10 @@ main {
 h2 {
   margin: 0 0 10px;
   font-size: 0.98rem;
-  color: var(--gold);
+  color: #e4c27a;
   font-weight: 800;
   letter-spacing: 0.02em;
+  text-align: center;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
 }
 
@@ -197,10 +200,11 @@ label {
 
 .form-section-title {
   grid-column: 1 / -1;
-  font-size: 0.74rem;
+  font-size: 0.9rem;
   font-weight: 800;
-  letter-spacing: 0.05em;
-  color: var(--gold);
+  letter-spacing: 0.03em;
+  color: #e4c27a;
+  text-align: center;
   border-top: 1px solid rgba(205, 177, 115, 0.35);
   padding-top: 10px;
   margin-top: 2px;
@@ -242,15 +246,22 @@ textarea {
 input[type="date"],
 input[type="datetime-local"],
 input[type="time"] {
-  font-size: 16px;
-  padding: 6px 8px;
+  font-size: 14px;
+  padding: 6px 7px;
   line-height: 1.2;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  min-inline-size: 0;
+  display: block;
+  overflow: hidden;
 }
 
 input[type="date"]::-webkit-datetime-edit,
 input[type="datetime-local"]::-webkit-datetime-edit,
 input[type="time"]::-webkit-datetime-edit {
   padding: 0;
+  overflow: hidden;
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator,
@@ -258,6 +269,10 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator,
 input[type="time"]::-webkit-calendar-picker-indicator {
   opacity: 0.75;
   cursor: pointer;
+}
+
+label {
+  overflow: hidden;
 }
 
 textarea {
@@ -393,7 +408,7 @@ button.danger {
   .app-shell {
     padding-left: 8px;
     padding-right: 8px;
-    padding-bottom: calc(94px + env(safe-area-inset-bottom));
+    padding-bottom: calc(88px + env(safe-area-inset-bottom));
   }
 
   .topbar {
@@ -408,5 +423,12 @@ button.danger {
 
   .form-grid {
     grid-template-columns: 1fr 1fr;
+  }
+
+  input[type="date"],
+  input[type="datetime-local"],
+  input[type="time"] {
+    font-size: 13px;
+    padding: 5px 6px;
   }
 }

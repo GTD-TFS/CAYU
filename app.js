@@ -190,7 +190,7 @@
 
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", function () {
-      navigator.serviceWorker.register("./sw.js?v=20260327c").catch(function () {});
+      navigator.serviceWorker.register("./sw.js?v=20260327d").catch(function () {});
     });
   }
 
