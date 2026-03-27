@@ -18,9 +18,9 @@
 
   var GENERAL_FIELD_DEFS = [
     { type: "section", label: "DATOS PRINCIPALES" },
-    { key: "numeroEmbarcacion", label: "EMBARCACION NUMERO", span: 1 },
-    { key: "lugarLlegada", label: "LUGAR DE LLEGADA", span: 3 },
+    { key: "numeroEmbarcacion", label: "EMBARCACION NUMERO", span: 2 },
     { key: "fechaHoraLlegada", label: "FECHA Y HORA DE LLEGADA", inputType: "datetime-local", span: 2 },
+    { key: "lugarLlegada", label: "LUGAR DE LLEGADA", span: 2 },
     { key: "municipio", label: "MUNICIPIO", span: 2 },
     { key: "requirente", label: "REQUIRENTE" },
     { key: "fechaHoraAviso", label: "FECHA Y HORA DE AVISO", inputType: "datetime-local", compact: true },
@@ -29,7 +29,13 @@
     { key: "otrosMenores", label: "OTROS MENORES", inputType: "number", compact: true },
     { key: "mujeresAdultas", label: "MUJERES ADULTAS", inputType: "number", compact: true },
     { key: "hombresAdultos", label: "HOMBRES ADULTOS", inputType: "number", compact: true },
-    { key: "juzgado", label: "JUZGADO" },
+    {
+      key: "juzgado",
+      label: "JUZGADO",
+      inputType: "select",
+      span: 4,
+      options: ["Plaza 1 de Arona", "Plaza 2 de Arona", "Plaza 3 de Arona", "Plaza 4 de Arona"]
+    },
     { key: "horaLlamadaJuzgado", label: "HORA LLAMADA JUZGADO", inputType: "time", compact: true },
     { key: "horaLlamadaFiscalia", label: "HORA LLAMADA FISCALIA", inputType: "time", compact: true },
     { key: "horaLlamadaOfilingua", label: "HORA LLAMADA OFILINGUA", inputType: "time", compact: true },
@@ -190,7 +196,7 @@
 
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", function () {
-      navigator.serviceWorker.register("./sw.js?v=20260327g").catch(function () {});
+      navigator.serviceWorker.register("./sw.js?v=20260327h").catch(function () {});
     });
   }
 
@@ -442,7 +448,9 @@
   function resetPersonForm() {
     editingPersonId = null;
     ui.personForm.reset();
-    ui.submitPerson.textContent = "AÑADIR PERSONA";
+    ui.submitPerson.innerHTML = "<span class='btn-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='9.5' cy='7.5' r='3.5'></circle><path d='M3 20v-1a4.5 4.5 0 0 1 4.5 -4.5h4'></path><path d='M16 8v8'></path><path d='M12 12h8'></path></svg></span>";
+    ui.submitPerson.setAttribute("aria-label", "Añadir persona");
+    ui.submitPerson.setAttribute("title", "Añadir persona");
     ui.cancelEdit.hidden = true;
   }
 
@@ -481,6 +489,17 @@
           + "<label class='" + classes.concat(["general-field-wide"]).join(" ") + "'>"
           + "<span>" + escapeHtml(field.label) + "</span>"
           + "<textarea data-common-key='" + escapeHtml(field.key) + "' rows='3'" + placeholder + "></textarea>"
+          + "</label>";
+      }
+
+      if (inputType === "select") {
+        var optionsHtml = "<option value=''></option>" + (field.options || []).map(function (opt) {
+          return "<option value='" + escapeHtml(opt) + "'>" + escapeHtml(opt) + "</option>";
+        }).join("");
+        return ""
+          + "<label class='" + classes.join(" ") + "'>"
+          + "<span>" + escapeHtml(field.label) + "</span>"
+          + "<select data-common-key='" + escapeHtml(field.key) + "'>" + optionsHtml + "</select>"
           + "</label>";
       }
 
@@ -682,7 +701,9 @@
         PERSON_INPUT_KEYS.forEach(function (key) {
           ui.personForm.elements[key].value = toText(person.baseFields[key]);
         });
-        ui.submitPerson.textContent = "Guardar cambios";
+        ui.submitPerson.innerHTML = "<span class='btn-icon' aria-hidden='true'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 4h10l4 4v10a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2'></path><path d='M10 14a2 2 0 1 0 4 0a2 2 0 1 0 -4 0'></path><path d='M14 4l0 4l-6 0l0 -4'></path></svg></span>";
+        ui.submitPerson.setAttribute("aria-label", "Guardar cambios");
+        ui.submitPerson.setAttribute("title", "Guardar cambios");
         ui.cancelEdit.hidden = false;
         switchTab("people");
         ui.personForm.elements.nombre.focus();

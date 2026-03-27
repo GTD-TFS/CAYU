@@ -1,10 +1,10 @@
-const CACHE = "cayupol-v7-20260327g";
+const CACHE = "cayupol-v8-20260327h";
 const ASSETS = [
   "./",
   "./index.html",
-  "./styles.css?v=20260327g",
-  "./app.js?v=20260327g",
-  "./manifest.webmanifest?v=20260327g",
+  "./styles.css?v=20260327h",
+  "./app.js?v=20260327h",
+  "./manifest.webmanifest?v=20260327h",
   "./assets/icons/icon-192.png",
   "./assets/icons/icon-512.png",
   "./assets/icons/icon-180.png",

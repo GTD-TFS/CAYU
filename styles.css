@@ -69,7 +69,7 @@ h1 {
 
 .top-actions {
   display: flex;
-  gap: 6px;
+  gap: 2px;
   align-items: center;
 }
 
@@ -95,8 +95,8 @@ h1 {
   inset: 4px auto 4px 4px;
   width: calc(50% - 4px);
   border-radius: 999px;
-  background: linear-gradient(135deg, rgba(70, 124, 214, 0.95), rgba(41, 92, 178, 0.92));
-  box-shadow: 0 8px 20px rgba(9, 30, 76, 0.52);
+  background: linear-gradient(135deg, rgba(176, 145, 89, 0.9), rgba(137, 112, 68, 0.9));
+  box-shadow: 0 8px 18px rgba(74, 55, 25, 0.42);
   transition: transform 0.22s ease;
   pointer-events: none;
 }
@@ -244,9 +244,12 @@ input[type="datetime-local"],
 input[type="time"] {
   -webkit-appearance: none;
   appearance: none;
-  font-size: 14px;
-  padding: 6px 7px;
+  font-size: 16px;
   line-height: 1.2;
+  padding: 8px 10px;
+  border-radius: 10px;
+  min-height: 37px;
+  height: 37px;
   inline-size: 100%;
   max-inline-size: 100%;
   min-inline-size: 0;
@@ -262,6 +265,7 @@ input[type="time"]::-webkit-datetime-edit {
   padding: 0;
   min-width: 0;
   max-width: 100%;
+  display: block;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -315,8 +319,8 @@ button {
 }
 
 .btn-icon {
-  inline-size: 14px;
-  block-size: 14px;
+  inline-size: 24px;
+  block-size: 24px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -329,8 +333,27 @@ button {
 }
 
 #btnClear {
-  min-width: 40px;
-  padding-inline: 10px;
+  min-width: 44px;
+  padding-inline: 8px;
+}
+
+.icon-btn {
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  color: #dbe8fb;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 8px;
+  border-radius: 12px;
+}
+
+.icon-btn-danger {
+  color: #ff5b7a;
+}
+
+#submitPerson.icon-btn {
+  color: #8cc7ff;
 }
 
 .btn-primary,
@@ -452,7 +475,8 @@ button.danger {
   input[type="date"],
   input[type="datetime-local"],
   input[type="time"] {
-    font-size: 13px;
-    padding: 5px 6px;
+    font-size: 14px;
+    padding: 8px 8px;
+    height: 37px;
   }
 }
