@@ -202,7 +202,7 @@
 
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", function () {
-      navigator.serviceWorker.register("./sw.js?v=20260327i").catch(function () {});
+      navigator.serviceWorker.register("./sw.js?v=20260327j").catch(function () {});
     });
   }
 
@@ -212,6 +212,22 @@
 
   function toText(value) {
     return String(value == null ? "" : value).trim();
+  }
+
+  function buildExportFileName() {
+    var raw = toText(state.commonData && state.commonData.numeroEmbarcacion);
+    var normalized = raw
+      .replace(/[\\/]+/g, "-")
+      .replace(/\s*-\s*/g, "-")
+      .replace(/[<>:"|?*\u0000-\u001F]+/g, "-")
+      .replace(/\s+/g, " ")
+      .replace(/-+/g, "-")
+      .trim();
+
+    if (!normalized) {
+      normalized = "SIN-NUMERO";
+    }
+    return "PATERA " + normalized + ".json";
   }
 
   function uid() {
@@ -554,9 +570,7 @@
       var fullName = [toText(bf.nombre), toText(bf.apellidos)].filter(Boolean).join(" ").trim() || "Sin nombre";
       var sub = [
         "#" + (idx + 1),
-        toText(bf.numPulsera) ? "Pulsera " + toText(bf.numPulsera) : "Sin pulsera",
-        toText(bf.nacionalidad) || "Nacionalidad vacia",
-        toText(bf.sexo) || "Sexo vacio"
+        toText(bf.numPulsera) ? "Pulsera " + toText(bf.numPulsera) : "Sin pulsera"
       ].join(" · ");
 
       return ""
@@ -591,16 +605,7 @@
     var blob = new Blob([json], { type: "application/json" });
     var url = URL.createObjectURL(blob);
 
-    var stamp = new Date();
-    var fileName = [
-      "sesion-campo",
-      stamp.getFullYear(),
-      String(stamp.getMonth() + 1).padStart(2, "0"),
-      String(stamp.getDate()).padStart(2, "0"),
-      "-",
-      String(stamp.getHours()).padStart(2, "0"),
-      String(stamp.getMinutes()).padStart(2, "0")
-    ].join("") + ".json";
+    var fileName = buildExportFileName();
 
     var a = document.createElement("a");
     a.href = url;
